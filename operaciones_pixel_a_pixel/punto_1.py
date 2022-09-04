@@ -21,5 +21,8 @@ for resolution in resolutions:
 for i, image in enumerate(images):
     cv.imshow("{}".format(i), image)
 
-cv.waitKey(0)
-cv.destroyAllWindows()
+while True:
+    k = cv.waitKey(0) & 0xFF
+    if k == 27:
+        cv.destroyAllWindows()
+        break
