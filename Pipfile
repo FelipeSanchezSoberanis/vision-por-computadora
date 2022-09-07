@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 opencv-contrib-python = "*"
 matplotlib = "*"
+progressbar2 = "*"
 
 [dev-packages]
 
