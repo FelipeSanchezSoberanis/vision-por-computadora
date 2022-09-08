@@ -34,13 +34,26 @@ def gaussian_blur(image: np.ndarray, weight_matrix: list[list[float]]) -> np.nda
         for x in range(0, height):
             for i in range(-math.floor(kernel / 2), math.ceil(kernel / 2)):
                 for j in range(-math.floor(kernel / 2), math.ceil(kernel / 2)):
-                    if 0 <= x + i < height and 0 <= y + j < width:
-                        pixels.append(
-                            image[x + i][y + j]
-                            * weight_matrix[i + math.floor(kernel / 2)][
-                                j + math.floor(kernel / 2)
-                            ]
-                        )
+                    x_temp = x + i
+                    y_temp = y + j
+
+                    if x_temp < 0:
+                        x_temp += height
+                    if x_temp >= height:
+                        x_temp -= height
+
+                    if y_temp < 0:
+                        y_temp += width
+                    if y_temp >= width:
+                        y_temp -= width
+
+                    pixels.append(
+                        image[x_temp][y_temp]
+                        * weight_matrix[i + math.floor(kernel / 2)][
+                            j + math.floor(kernel / 2)
+                        ]
+                    )
+
             average = sum(pixels)
             image_smooth[x][y] = average
             pixels = []
@@ -54,7 +67,14 @@ def gaussian_blur(image: np.ndarray, weight_matrix: list[list[float]]) -> np.nda
 def main() -> None:
     image = cv.imread("Fig0309(a)(washed_out_aerial_image).tif")
     image_gaussian = gaussian_blur(
-        image, [[1 / 9, 1 / 9, 1 / 9], [1 / 9, 1 / 9, 1 / 9], [1 / 9, 1 / 9, 1 / 9]]
+        image,
+        [
+            [1 / 25, 1 / 25, 1 / 25, 1 / 25, 1 / 25],
+            [1 / 25, 1 / 25, 1 / 25, 1 / 25, 1 / 25],
+            [1 / 25, 1 / 25, 1 / 25, 1 / 25, 1 / 25],
+            [1 / 25, 1 / 25, 1 / 25, 1 / 25, 1 / 25],
+            [1 / 25, 1 / 25, 1 / 25, 1 / 25, 1 / 25],
+        ],
     )
 
     plt.subplot(1, 2, 1)
