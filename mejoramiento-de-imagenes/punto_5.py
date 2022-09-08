@@ -5,7 +5,20 @@ import math
 import progressbar as pb
 
 
+def matrix_is_square(matrix: list[list[float]]) -> bool:
+    length: int = len(matrix)
+
+    for row in matrix:
+        if not len(row) == length:
+            return False
+
+    return True
+
+
 def gaussian_blur(image: np.ndarray, weight_matrix: list[list[float]]) -> np.ndarray:
+    if not matrix_is_square(weight_matrix):
+        raise RuntimeError("Weigth matrix is not square")
+
     kernel: int = len(weight_matrix)
 
     height, width, _ = image.shape
