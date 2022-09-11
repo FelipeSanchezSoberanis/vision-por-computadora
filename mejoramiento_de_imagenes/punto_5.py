@@ -66,47 +66,70 @@ def add_exponential_noise(image: np.ndarray, _lambda: float) -> np.ndarray:
     return image_exponential
 
 
+def add_salt_and_pepper_noise(image: np.ndarray, probability: float) -> np.ndarray:
+    image_salt_and_pepper: np.ndarray = image.copy()
+
+    height, width = image_salt_and_pepper.shape
+
+    for h in range(height):
+        for w in range(width):
+            if random.random() <= probability:
+                image_salt_and_pepper[h][w] = -255 + random.random() * 255 * 2
+
+    return image_salt_and_pepper
+
+
 def main() -> None:
     image = cv.imread("noise_tester.jpg", 0)
     image_gaussian = add_gaussian_noise(image, 10, 10)
     image_rayleigh = add_rayleigh_noise(image, 10)
     image_exponential = add_exponential_noise(image, 0.125)
+    image_salt_and_pepper = add_salt_and_pepper_noise(image, 0.9)
 
-    plt.subplot(2, 4, 1)
+    plt.subplot(3, 4, 1)
     plt.title("Original")
     plt.imshow(cv.cvtColor(image, cv.COLOR_BGR2RGB))
     plt.axis("off")
 
-    plt.subplot(2, 4, 2)
+    plt.subplot(3, 4, 2)
     plt.title("Original histogram")
     plt.plot(cv.calcHist([image], [0], None, [255], [0, 255]))
 
-    plt.subplot(2, 4, 3)
+    plt.subplot(3, 4, 3)
     plt.title("Gaussian")
     plt.imshow(cv.cvtColor(image_gaussian, cv.COLOR_BGR2RGB))
     plt.axis("off")
 
-    plt.subplot(2, 4, 4)
+    plt.subplot(3, 4, 4)
     plt.title("Gaussian histogram")
     plt.plot(cv.calcHist([image_gaussian], [0], None, [255], [0, 255]))
 
-    plt.subplot(2, 4, 5)
+    plt.subplot(3, 4, 5)
     plt.title("Rayleigh")
     plt.imshow(cv.cvtColor(image_rayleigh, cv.COLOR_BGR2RGB))
     plt.axis("off")
 
-    plt.subplot(2, 4, 6)
+    plt.subplot(3, 4, 6)
     plt.title("Rayleigh histogram")
     plt.plot(cv.calcHist([image_rayleigh], [0], None, [255], [0, 255]))
 
-    plt.subplot(2, 4, 7)
+    plt.subplot(3, 4, 7)
     plt.title("Exponential")
     plt.imshow(cv.cvtColor(image_exponential, cv.COLOR_BGR2RGB))
     plt.axis("off")
 
-    plt.subplot(2, 4, 8)
+    plt.subplot(3, 4, 8)
     plt.title("Exponential histogram")
     plt.plot(cv.calcHist([image_exponential], [0], None, [255], [0, 255]))
+
+    plt.subplot(3, 4, 9)
+    plt.title("Salt and pepper")
+    plt.imshow(cv.cvtColor(image_salt_and_pepper, cv.COLOR_BGR2RGB))
+    plt.axis("off")
+
+    plt.subplot(3, 4, 10)
+    plt.title("Salt and pepper histogram")
+    plt.plot(cv.calcHist([image_salt_and_pepper], [0], None, [255], [0, 255]))
 
     plt.show()
 
