@@ -45,10 +45,24 @@ N/A.
 
 ![Comparación de la ecualización hecha por mi contra la ecualización de la librería OpenCV.](reporte/media/punto_2_resultados_1.png)
 
+Visualmente, los resultados obtenidos por el algoritmo hecho desde 0 contra el algoritmo implementado en la librería de OpenCV, no es aparente. La mayor diferencia se encuentra en la velocidad con la que ambos algoritmos se llevan a cabo, ya que el propio, al estar hecho en Python, es mucho más lento que el de OpenCV, que se encuentra escrito en C y C++.
+
 ## Bibliografía
+
+![Documentación de la función equalizeHist ([click aquí para ir](https://docs.opencv.org/4.x/d6/dc7/group__imgproc__hist.html#ga7e54091f0c937d49bf84152a16f76d6e)).](reporte/media/lib_opencv_equalizeHist.png)
+
 ## Librerías
+
+- opencv-contrib-python
+- matplotlib
+
 ## Algoritmos propios
+
+N/A.
+
 ## Problemas
+
+N/A.
 
 \newpage
 # Punto 3
