@@ -86,50 +86,25 @@ def main() -> None:
     image_exponential = add_exponential_noise(image, 0.125)
     image_salt_and_pepper = add_salt_and_pepper_noise(image, 0.9)
 
-    plt.subplot(3, 4, 1)
-    plt.title("Original")
-    plt.imshow(cv.cvtColor(image, cv.COLOR_BGR2RGB))
-    plt.axis("off")
+    data: dict[str, np.ndarray] = {
+        "Original": image,
+        "Gaussian": image_gaussian,
+        "Rayleigh": image_rayleigh,
+        "Exponential": image_exponential,
+        "Salt and pepper": image_salt_and_pepper,
+    }
 
-    plt.subplot(3, 4, 2)
-    plt.title("Original histogram")
-    plt.plot(cv.calcHist([image], [0], None, [255], [0, 255]))
+    for i, (image_name, image_data) in enumerate(data.items()):
+        i *= 2
 
-    plt.subplot(3, 4, 3)
-    plt.title("Gaussian")
-    plt.imshow(cv.cvtColor(image_gaussian, cv.COLOR_BGR2RGB))
-    plt.axis("off")
+        plt.subplot(3, 4, i + 1)
+        plt.title("{}".format(image_name))
+        plt.imshow(cv.cvtColor(image_data, cv.COLOR_BGR2RGB))
+        plt.axis("off")
 
-    plt.subplot(3, 4, 4)
-    plt.title("Gaussian histogram")
-    plt.plot(cv.calcHist([image_gaussian], [0], None, [255], [0, 255]))
-
-    plt.subplot(3, 4, 5)
-    plt.title("Rayleigh")
-    plt.imshow(cv.cvtColor(image_rayleigh, cv.COLOR_BGR2RGB))
-    plt.axis("off")
-
-    plt.subplot(3, 4, 6)
-    plt.title("Rayleigh histogram")
-    plt.plot(cv.calcHist([image_rayleigh], [0], None, [255], [0, 255]))
-
-    plt.subplot(3, 4, 7)
-    plt.title("Exponential")
-    plt.imshow(cv.cvtColor(image_exponential, cv.COLOR_BGR2RGB))
-    plt.axis("off")
-
-    plt.subplot(3, 4, 8)
-    plt.title("Exponential histogram")
-    plt.plot(cv.calcHist([image_exponential], [0], None, [255], [0, 255]))
-
-    plt.subplot(3, 4, 9)
-    plt.title("Salt and pepper")
-    plt.imshow(cv.cvtColor(image_salt_and_pepper, cv.COLOR_BGR2RGB))
-    plt.axis("off")
-
-    plt.subplot(3, 4, 10)
-    plt.title("Salt and pepper histogram")
-    plt.plot(cv.calcHist([image_salt_and_pepper], [0], None, [255], [0, 255]))
+        plt.subplot(3, 4, i + 2)
+        plt.title("{} histogram".format(image_name))
+        plt.plot(cv.calcHist([image_data], [0], None, [255], [0, 255]))
 
     plt.show()
 
