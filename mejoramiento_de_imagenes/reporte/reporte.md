@@ -32,7 +32,47 @@ N/A.
 
 ## Algoritmos propios
 
-<!-- TODO  -->
+Calcular histograma de una imagen:
+```
+imagen = ingresar imagen
+
+ancho = imagen.ancho
+alto = imagen.alto
+
+x = 0 a 255, de 1 en 1
+y = 256 0s
+
+por cada w en ancho:
+    por cada a en alto:
+        v = imagen[w][a].intensidad_del_pixel
+        y[v] += 1
+
+regresar x, y
+```
+
+Ecualizar histograma:
+```
+imagen = ingresar imagen
+
+ancho = imagen.ancho
+alto = imagen.alto
+
+y = calcular_histograma(imagen)
+
+k = 255 / (ancho * alto)
+suma = 0
+
+imagen_ecualizada = zeros, ancho y alto igual al de imagen
+
+por cada w en ancho:
+    por cada a en alto:
+        por cada s en intensidad_pixel(imagen[w][a]):
+            suma += y[s]
+        imagen_ecualizada[w][a] = k * suma
+        suma = 0
+
+regresar imagen_ecualizada
+```
 
 ## Problemas
 
