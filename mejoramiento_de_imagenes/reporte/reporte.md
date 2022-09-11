@@ -32,7 +32,7 @@ N/A.
 
 ## Algoritmos propios
 
-Calcular histograma de una imagen:
+**Calcular histograma de una imagen**:
 ```
 imagen = ingresar imagen
 
@@ -50,7 +50,7 @@ por cada w en ancho:
 regresar x, y
 ```
 
-Ecualizar histograma:
+**Ecualizar histograma**:
 ```
 imagen = ingresar imagen
 
