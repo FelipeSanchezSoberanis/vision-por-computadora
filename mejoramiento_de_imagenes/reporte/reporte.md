@@ -5,6 +5,7 @@ date: "12 de septiembre de 2022"
 
 lang: es
 toc: true
+toc-depth: 2
 geometry: margin=1in
 ---
 
@@ -221,6 +222,13 @@ regresar imagen_ruido
 ## Problemas
 
 N/A.
+
+\newpage
+# Conclusiones
+
+Esta tarea hizo que trabajaramos con, a mi parecer, varios de los procesamientos de imágen más importantes que hemos visto en la materia. En el caso de la ecualización del histograma, esto permite que las imagenes tengan una mejore visualización, lo que quiere decir que, al aplicar algún tipo de visión por computadora, los resultados serán mucho mejores.
+
+De igual manera, en el caso de la aplicación de diferentes ruidos, demuestra cómo reconocer el ruido que tiene cada imagen. En la vida real, la intención no es aplicar ruido, si no lograr reconocerlo por medio del histograma y aplicar la operación inversa para poder tener una imagen más clara, logrando mejorar los resultados de cualquier proceso que se aplique seguidamente.
 
 # Repositorio
 
