@@ -135,10 +135,47 @@ El nombre de matriz de cizallamiento o de corte se refiere al hecho de que la ma
 # Punto 4
 
 ## Resultados
+
+![Resultados de la aplicación de un mejoramiento de imagen por estadísticas locales con un cuadro de 3x3.](reporte/media/punto_4_resultados_1.png)
+
 ## Bibliografía
+
+N/A.
+
 ## Librerías
+
+- opencv-contrib-python
+- numpy
+- matplotlib
+
 ## Algoritmos propios
+
+### Estadísticas locales
+```
+imagen = ingresar imagen
+kernel = ingresar kerel, entero mayor a 0
+
+ancho = imagen.ancho
+alto = imagen.alto
+
+imagen_suave = copiar(imagen)
+
+pixeles = lista vacía
+
+por cada x en ancho:
+    por cada y en alto:
+        por cada pixel alrededor de imagen[x][y] en un radio igual a kernel:
+            pixeles.agregar(pixel)
+        promedio = promedio(pixeles)
+        imagen_suave[x][y] = promedio
+        pixeles = vaciar lista
+
+regresar imagen_suave
+```
+
 ## Problemas
+
+N/A.
 
 \newpage
 # Punto 5
