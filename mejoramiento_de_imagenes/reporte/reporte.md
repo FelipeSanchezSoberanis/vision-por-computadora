@@ -138,6 +138,8 @@ El nombre de matriz de cizallamiento o de corte se refiere al hecho de que la ma
 
 ![Resultados de la aplicación de un mejoramiento de imagen por estadísticas locales con un cuadro de 3x3.](reporte/media/punto_4_resultados_1.png)
 
+Se puede observar cómo el mejoramiento de imagen por medio de estadísticas locales permite que la imagen sea suavizada. En la imagen mostrada arriba, el ejemplo es exagerado por motivos demostrativos.
+
 ## Bibliografía
 
 N/A.
