@@ -183,9 +183,45 @@ N/A.
 # Punto 5
 
 ## Resultados
+
+![Resultados de la aplicación de diferentes tipos de ruido a una imagen con 2 tonos de gris.](reporte/media/punto_5_resultados_1.png)
+
+A pesar de que, visualmente, el ruido aplicado no se ve tan diferente entre las imágenes, los histogramas de cada caso permiten ver cómo obedecen la distribución de la función de probabilidad utilizada para generar el ruido.
+
 ## Bibliografía
+
+![Documentación de la función choices del módulo random de Python ([click aquí para ir](https://docs.python.org/3/library/random.html#random.choices)).](reporte/media/lib_python_choices.png)
+
 ## Librerías
+
+- opencv-contrib-python
+- numpy
+- matplotlib
+
 ## Algoritmos propios
+
+### Agregar ruido a una imagen
+```
+imagen = ingresar imagen
+imagen_ruido = copy(imagen)
+
+ancho = imagen.ancho
+alto = imagen.alto
+
+x_eje = 0 a 255
+y_eje = probabilidad de x según el método usado para el ruido por cada x en x_eje
+
+por cada x en alto:
+    por cada y en ancho:
+        imagen_ruido[x][y] += eleccion_al_azar_segun_pesos(valores=x_eje, pesos=y_eje)
+
+regresar imagen_ruido
+```
+
 ## Problemas
 
+N/A.
 
+# Repositorio
+
+[https://github.com/FelipeSanchezSoberanis/vision-por-computadora/tree/main/mejoramiento_de_imagenes](https://github.com/FelipeSanchezSoberanis/vision-por-computadora/tree/main/mejoramiento_de_imagenes)
