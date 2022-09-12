@@ -107,11 +107,29 @@ N/A.
 \newpage
 # Punto 3
 
-## Resultados
-## Bibliografía
-## Librerías
-## Algoritmos propios
-## Problemas
+Las transformaciones afines son transformaciones que están compuestas de una transformación lineal seguida por una traslación o desplazamiento. Es decir, mantiene las líneas y el paralelismo, más no las distancias ni los ángulos.
+
+## Identidad
+
+En matemáticas una función identidad es una función matemática, de un conjunto M a sí mismo, que devuelve su propio argumento. Es decir, mantiene sin cambios la imagen que se use como entrada.
+
+## Escalamiento
+
+Es una aplicación lineal que aumenta (incrementa) o contrae (disminuye) el tamaño de distintas entidades (como formas o figuras geométricas) mediante un factor de escala que es el mismo en todas direcciones. El resultado de un escalado uniforme es una relación de semejanza (en el sentido geométrico) entre la figura original y su imagen.
+
+## Rotación
+
+Es el movimiento de cambio de orientación de un cuerpo o un sistema de referencia de forma que una línea (llamada eje de rotación) o un punto permanece fijo.
+
+## Reflexión
+
+Es un mapeo desde un espacio euclídeo a sí mismo que es una isometría con un hiperplano como un conjunto de puntos fijos; este conjunto es llamado eje (en 2 dimensiones) o plano (en 3 dimensiones) de reflexión. La imagen de una figura por una reflexión es su imagen especular, en el eje o plano de reflexión. Por ejemplo, la imagen especular de la letra minúscula p por una reflexión con respecto a un eje vertical se vería como la letra q. Su imagen por una reflexión en un eje horizontal se vería como la letra b.
+
+## Shear
+
+Es un tipo de matriz elemental que implica la suma del múltiplo de una fila (o de una columna) a otra. Esta matriz se puede generar a partir de la matriz identidad, reemplazando algunos elementos nulos por uno o más valores distintos de cero.
+
+El nombre de matriz de cizallamiento o de corte se refiere al hecho de que la matriz representa una transformación asociada a una deformación lateral elástica de un objeto, similar a la que se produce en un cubo cuando se ejerce un esfuerzo tangencial (o cortante) sobre dos de sus caras opuestas.
 
 \newpage
 # Punto 4
