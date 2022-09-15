@@ -6,6 +6,16 @@ import numpy as np
 from numpy.lib import math
 
 
+def mmse(pixels: list[int], sigma: float, current_pixel: float) -> float:
+    sigma_neighbours: float = float(np.var(pixels))
+    mean: float = float(np.mean(pixels))
+
+    if sigma_neighbours == 0:
+        return current_pixel
+
+    return current_pixel - sigma / sigma_neighbours * (current_pixel - mean)
+
+
 def mean_alpha(pixels: list[int]) -> float:
     pixels_filtered: list[int] = [
         pixel for pixel in pixels if pixel != min(pixels) and pixel != max(pixels)
@@ -49,7 +59,10 @@ def filter_mean(image: np.ndarray, kernel: int) -> np.ndarray:
 
 
 def apply_filter(
-    image: np.ndarray, kernel: int, function: callable[[list[int]], float]
+    image: np.ndarray,
+    kernel: int,
+    function: callable,
+    sigma: float = 0,
 ) -> np.ndarray:
     height, width = image.shape
 
@@ -80,7 +93,10 @@ def apply_filter(
 
                     pixels.append(image[h_current][w_current])
 
-            image_filtered[h][w] = function(pixels)
+            if sigma == 0:
+                image_filtered[h][w] = function(pixels)
+            else:
+                image_filtered[h][w] = function(pixels, sigma, image[h][w])
             pixels = []
 
     return image_filtered
@@ -100,6 +116,7 @@ def print_images(kernel: int) -> None:
     image_min: np.ndarray = apply_filter(image, kernel, min)
     image_medium_point: np.ndarray = apply_filter(image, kernel, medium_point)
     image_mean_alpha: np.ndarray = apply_filter(image, kernel, mean_alpha)
+    image_mmse: np.ndarray = apply_filter(image, kernel, mmse, 1.5)
 
     images: dict[str, np.ndarray] = {
         "Original": image,
@@ -113,6 +130,7 @@ def print_images(kernel: int) -> None:
         "Min": image_min,
         "Medium point": image_medium_point,
         "Mean alpha": image_mean_alpha,
+        "MMSE": image_mmse,
     }
 
     for i, (name, image) in enumerate(images.items()):
