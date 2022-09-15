@@ -1,8 +1,13 @@
+import scipy.stats as stats
 from typing import Callable as callable
 import cv2 as cv
 import matplotlib.pyplot as plt
 import numpy as np
 from numpy.lib import math
+
+
+def mode(pixels: list[int]) -> float:
+    return stats.mode(pixels)[0][0]
 
 
 def median(pixels: list[int]) -> float:
@@ -75,6 +80,7 @@ def print_images(kernel: int) -> None:
         image, kernel, contraharmonic_mean
     )
     image_median: np.ndarray = apply_filter(image, kernel, median)
+    image_mode: np.ndarray = apply_filter(image, kernel, mode)
 
     images: dict[str, np.ndarray] = {
         "Original": image,
@@ -83,6 +89,7 @@ def print_images(kernel: int) -> None:
         "Harmonic mean": image_harmonic_mean,
         "Contraharmonic mean": image_contraharmonic_mean,
         "Median": image_median,
+        "Mode": image_mode,
     }
 
     for i, (name, image) in enumerate(images.items()):
