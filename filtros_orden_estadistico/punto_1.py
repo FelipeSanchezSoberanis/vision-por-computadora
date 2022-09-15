@@ -5,6 +5,10 @@ import numpy as np
 from numpy.lib import math
 
 
+def harmonic_mean(pixels: list[int]) -> float:
+    return len(pixels) / np.sum([1 / pixel for pixel in pixels])
+
+
 def geometric_mean(pixels: list[int]) -> float:
     return np.exp(np.log(pixels).mean())
 
@@ -56,22 +60,24 @@ def print_images(kernel: int) -> None:
     image: np.ndarray = cv.imread("opencv-logo.jpg", 0)
     image_mean: np.ndarray = filter_mean(image, kernel)
     image_geometric_mean: np.ndarray = apply_filter(image, kernel, geometric_mean)
+    image_harmonic_mean: np.ndarray = apply_filter(image, kernel, harmonic_mean)
 
     images: dict[str, np.ndarray] = {
         "Original": image,
         "Mean": image_mean,
         "Geometric mean": image_geometric_mean,
+        "Harmonic mean": image_harmonic_mean,
     }
 
     for i, (name, image) in enumerate(images.items()):
-        plt.subplot(1, 3, i + 1)
+        plt.subplot(1, 4, i + 1)
         plt.imshow(cv.cvtColor(image, cv.COLOR_BGR2RGB))
         plt.title(name)
         plt.axis("off")
 
 
 def main() -> None:
-    print_images(3)
+    print_images(10)
 
     #  axfreq = plt.axes([0.20, 0.1, 0.65, 0.03])
     #  kernel_slider = plt.Slider(
