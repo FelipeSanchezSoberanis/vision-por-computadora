@@ -6,6 +6,17 @@ import numpy as np
 from numpy.lib import math
 
 
+def mean_alpha(pixels: list[int]) -> float:
+    pixels_filtered: list[int] = [
+        pixel for pixel in pixels if pixel != min(pixels) and pixel != max(pixels)
+    ]
+
+    if len(pixels_filtered):
+        return float(np.mean(pixels_filtered))
+
+    return float(np.mean(pixels))
+
+
 def medium_point(pixels: list[int]) -> float:
     return float(np.mean([max(pixels), min(pixels)]))
 
@@ -88,6 +99,7 @@ def print_images(kernel: int) -> None:
     image_max: np.ndarray = apply_filter(image, kernel, max)
     image_min: np.ndarray = apply_filter(image, kernel, min)
     image_medium_point: np.ndarray = apply_filter(image, kernel, medium_point)
+    image_mean_alpha: np.ndarray = apply_filter(image, kernel, mean_alpha)
 
     images: dict[str, np.ndarray] = {
         "Original": image,
@@ -100,6 +112,7 @@ def print_images(kernel: int) -> None:
         "Max": image_max,
         "Min": image_min,
         "Medium point": image_medium_point,
+        "Mean alpha": image_mean_alpha,
     }
 
     for i, (name, image) in enumerate(images.items()):
