@@ -81,6 +81,8 @@ def print_images(kernel: int) -> None:
     )
     image_median: np.ndarray = apply_filter(image, kernel, median)
     image_mode: np.ndarray = apply_filter(image, kernel, mode)
+    image_max: np.ndarray = apply_filter(image, kernel, max)
+    image_min: np.ndarray = apply_filter(image, kernel, min)
 
     images: dict[str, np.ndarray] = {
         "Original": image,
@@ -90,10 +92,12 @@ def print_images(kernel: int) -> None:
         "Contraharmonic mean": image_contraharmonic_mean,
         "Median": image_median,
         "Mode": image_mode,
+        "Max": image_max,
+        "Min": image_min,
     }
 
     for i, (name, image) in enumerate(images.items()):
-        plt.subplot(2, 4, i + 1)
+        plt.subplot(3, 4, i + 1)
         plt.imshow(cv.cvtColor(image, cv.COLOR_BGR2RGB))
         plt.title(name)
         plt.axis("off")
