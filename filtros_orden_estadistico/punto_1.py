@@ -5,6 +5,10 @@ import numpy as np
 from numpy.lib import math
 
 
+def median(pixels: list[int]) -> float:
+    return float(np.median(pixels))
+
+
 def contraharmonic_mean(pixels: list[int]) -> float:
     return np.mean([pixel**2 for pixel in pixels], dtype="float") / np.mean(
         pixels, dtype="float"
@@ -70,6 +74,7 @@ def print_images(kernel: int) -> None:
     image_contraharmonic_mean: np.ndarray = apply_filter(
         image, kernel, contraharmonic_mean
     )
+    image_median: np.ndarray = apply_filter(image, kernel, median)
 
     images: dict[str, np.ndarray] = {
         "Original": image,
@@ -77,6 +82,7 @@ def print_images(kernel: int) -> None:
         "Geometric mean": image_geometric_mean,
         "Harmonic mean": image_harmonic_mean,
         "Contraharmonic mean": image_contraharmonic_mean,
+        "Median": image_median,
     }
 
     for i, (name, image) in enumerate(images.items()):
