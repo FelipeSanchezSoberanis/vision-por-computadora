@@ -6,6 +6,10 @@ import numpy as np
 from numpy.lib import math
 
 
+def medium_point(pixels: list[int]) -> float:
+    return float(np.mean([max(pixels), min(pixels)]))
+
+
 def mode(pixels: list[int]) -> float:
     return stats.mode(pixels)[0][0]
 
@@ -83,6 +87,7 @@ def print_images(kernel: int) -> None:
     image_mode: np.ndarray = apply_filter(image, kernel, mode)
     image_max: np.ndarray = apply_filter(image, kernel, max)
     image_min: np.ndarray = apply_filter(image, kernel, min)
+    image_medium_point: np.ndarray = apply_filter(image, kernel, medium_point)
 
     images: dict[str, np.ndarray] = {
         "Original": image,
@@ -94,6 +99,7 @@ def print_images(kernel: int) -> None:
         "Mode": image_mode,
         "Max": image_max,
         "Min": image_min,
+        "Medium point": image_medium_point,
     }
 
     for i, (name, image) in enumerate(images.items()):
