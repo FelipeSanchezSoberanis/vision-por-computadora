@@ -54,7 +54,6 @@ def adaptative_median_filter(
                     pixels.append(image[h_current][w_current])
 
             while True:
-
                 z_min = min(pixels)
                 z_max = max(pixels)
                 z_med = float(np.median(pixels))
@@ -64,27 +63,20 @@ def adaptative_median_filter(
                 a_2 = z_med - z_max
 
                 if a_1 > 0 and a_2 < 0:
-
                     b_1 = z_xy - z_min
                     b_2 = z_xy - z_max
 
                     if b_1 > 0 and b_2 < 0:
-
                         image_filtered[h][w] = z_xy
                     else:
-
                         image_filtered[h][w] = z_med
-
                     break
-
                 else:
                     kernel += 1
 
                     if kernel <= s_max:
-
                         continue
                     else:
-
                         image_filtered[h][w] = z_xy
                         break
 
