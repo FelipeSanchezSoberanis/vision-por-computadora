@@ -4,10 +4,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+def get_distance(x1: float, y1: float, x2: float, y2: float) -> float:
+    return np.sqrt((y2 - y1) ** 2 + (x2 - x1) ** 2)
+
+
 def filter_in_frequency_by_radius(
     image: np.ndarray,
     r: list[int],
-    comparator: callable[[int, int, int, int, list[int], int], bool],
+    comparator: callable[[int, int, int, int, list[int], int], bool | float],
     order: int = 0,
 ) -> np.ndarray:
     image_dft: np.ndarray = np.fft.fft2(image)
@@ -27,12 +31,18 @@ def filter_in_frequency_by_radius(
     return image_filtered
 
 
+def filter_comparator_butterworth(
+    x_center: int, y_center: int, x: int, y: int, r: list[int], n: int
+) -> float:
+    return 1 / (1 + (get_distance(x, y, x_center, y_center) / r[0]) ** (2 * n))
+
+
 def band_pass_filter_comparator_ideal(
     x_center: int, y_center: int, x: int, y: int, r: list[int], _: int
 ) -> bool:
     return (
-        np.sqrt((y_center - y) ** 2 + (x_center - x) ** 2) >= r[0]
-        and np.sqrt((y_center - y) ** 2 + (x_center - x) ** 2) <= r[1]
+        get_distance(x, y, x_center, y_center) >= r[0]
+        and get_distance(x, y, x_center, y_center) <= r[1]
     )
 
 
@@ -40,21 +50,21 @@ def band_reject_filter_comparator_ideal(
     x_center: int, y_center: int, x: int, y: int, r: list[int], _: int
 ) -> bool:
     return (
-        np.sqrt((y_center - y) ** 2 + (x_center - x) ** 2) <= r[0]
-        or np.sqrt((y_center - y) ** 2 + (x_center - x) ** 2) >= r[1]
+        get_distance(x, y, x_center, y_center) <= r[0]
+        or get_distance(x, y, x_center, y_center) >= r[1]
     )
 
 
 def high_pass_filter_comparator_ideal(
     x_center: int, y_center: int, x: int, y: int, r: list[int], _: int
 ) -> bool:
-    return np.sqrt((y_center - y) ** 2 + (x_center - x) ** 2) >= r[0]
+    return get_distance(x, y, x_center, y_center) >= r[0]
 
 
 def low_pass_filter_comparator_ideal(
     x_center: int, y_center: int, x: int, y: int, r: list[int], _: int
 ) -> bool:
-    return np.sqrt((y_center - y) ** 2 + (x_center - x) ** 2) <= r[0]
+    return get_distance(x, y, x_center, y_center) <= r[0]
 
 
 def main() -> None:
@@ -70,6 +80,9 @@ def main() -> None:
     )
     image_band_reject: np.ndarray = filter_in_frequency_by_radius(
         image_original, [10, 30], band_reject_filter_comparator_ideal
+    )
+    image_butterworth: np.ndarray = filter_in_frequency_by_radius(
+        image_original, [10], filter_comparator_butterworth, order=10
     )
 
     plt.subplot(3, 2, 1)
@@ -95,6 +108,11 @@ def main() -> None:
     plt.subplot(3, 2, 5)
     plt.imshow(image_band_reject, cmap="gray")
     plt.title("Band reject")
+    plt.axis("off")
+
+    plt.subplot(3, 2, 5)
+    plt.imshow(image_butterworth, cmap="gray")
+    plt.title("Butterworth")
     plt.axis("off")
 
     plt.show()
