@@ -7,7 +7,8 @@ import matplotlib.pyplot as plt
 def filter_in_frequency_by_radius(
     image: np.ndarray,
     r: list[int],
-    comparator: callable[[int, int, int, int, list[int]], bool],
+    comparator: callable[[int, int, int, int, list[int], int], bool],
+    order: int = 0,
 ) -> np.ndarray:
     image_dft: np.ndarray = np.fft.fft2(image)
     dft_shift: np.ndarray = np.fft.fftshift(image_dft)
@@ -17,7 +18,7 @@ def filter_in_frequency_by_radius(
 
     for x in range(height):
         for y in range(width):
-            dft_shift[x][y] *= comparator(x_center, y_center, x, y, r)
+            dft_shift[x][y] *= comparator(x_center, y_center, x, y, r, order)
 
     idft_shift: np.ndarray = np.fft.ifftshift(dft_shift)
     image_filtered: np.ndarray = np.fft.ifft2(idft_shift)
@@ -27,7 +28,7 @@ def filter_in_frequency_by_radius(
 
 
 def band_pass_filter_comparator_ideal(
-    x_center: int, y_center: int, x: int, y: int, r: list[int]
+    x_center: int, y_center: int, x: int, y: int, r: list[int], _: int
 ) -> bool:
     return (
         np.sqrt((y_center - y) ** 2 + (x_center - x) ** 2) >= r[0]
@@ -36,7 +37,7 @@ def band_pass_filter_comparator_ideal(
 
 
 def band_reject_filter_comparator_ideal(
-    x_center: int, y_center: int, x: int, y: int, r: list[int]
+    x_center: int, y_center: int, x: int, y: int, r: list[int], _: int
 ) -> bool:
     return (
         np.sqrt((y_center - y) ** 2 + (x_center - x) ** 2) <= r[0]
@@ -45,13 +46,13 @@ def band_reject_filter_comparator_ideal(
 
 
 def high_pass_filter_comparator_ideal(
-    x_center: int, y_center: int, x: int, y: int, r: list[int]
+    x_center: int, y_center: int, x: int, y: int, r: list[int], _: int
 ) -> bool:
     return np.sqrt((y_center - y) ** 2 + (x_center - x) ** 2) >= r[0]
 
 
 def low_pass_filter_comparator_ideal(
-    x_center: int, y_center: int, x: int, y: int, r: list[int]
+    x_center: int, y_center: int, x: int, y: int, r: list[int], _: int
 ) -> bool:
     return np.sqrt((y_center - y) ** 2 + (x_center - x) ** 2) <= r[0]
 
