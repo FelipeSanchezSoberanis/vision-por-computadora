@@ -3,7 +3,8 @@ import cv2 as cv
 import matplotlib.pyplot as plt
 
 
-#  ROJO: rgb(235, 46, 40)
+#  UVAS: rgb(122, 57, 146)
+#  NARANJA: rgb(243, 163, 22)
 
 
 def segmentate_by_rbg(
@@ -35,19 +36,34 @@ def segmentate_by_rbg(
 
 
 def main() -> None:
-    image: np.ndarray = cv.imread("Juguetes de Colores.jpg")
-    image_red: np.ndarray = segmentate_by_rbg(image, 235, 46, 40, 0.25)
+    image_toys: np.ndarray = cv.imread("Juguetes de Colores.jpg")
+    image_toys_grapes: np.ndarray = segmentate_by_rbg(image_toys, 122, 57, 146, 0.5)
 
-    rows, cols = 1, 2
+    image_objects: np.ndarray = cv.imread("Figuras de Colores.jpg")
+    image_objects_orange: np.ndarray = segmentate_by_rbg(
+        image_objects, 243, 163, 22, 0.25
+    )
+
+    rows, cols = 1, 4
 
     plt.subplot(rows, cols, 1)
-    plt.imshow(cv.cvtColor(image, cv.COLOR_BGR2RGB))
-    plt.title("Original")
+    plt.imshow(cv.cvtColor(image_toys, cv.COLOR_BGR2RGB))
+    plt.title("Original toys")
     plt.axis("off")
 
     plt.subplot(rows, cols, 2)
-    plt.imshow(cv.cvtColor(image_red, cv.COLOR_BGRA2RGBA))
-    plt.title("Red segmented")
+    plt.imshow(cv.cvtColor(image_toys_grapes, cv.COLOR_BGRA2RGBA))
+    plt.title("Grapes segmented")
+    plt.axis("off")
+
+    plt.subplot(rows, cols, 3)
+    plt.imshow(cv.cvtColor(image_objects, cv.COLOR_BGR2RGB))
+    plt.title("Original objects")
+    plt.axis("off")
+
+    plt.subplot(rows, cols, 4)
+    plt.imshow(cv.cvtColor(image_objects_orange, cv.COLOR_BGRA2RGBA))
+    plt.title("Orange objects segmented")
     plt.axis("off")
 
     plt.show()
