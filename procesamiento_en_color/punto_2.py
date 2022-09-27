@@ -35,8 +35,8 @@ def segmentate_by_rbg(
 
 
 def main() -> None:
-    image: np.ndarray = cv.imread("Figuras de Colores.jpg")
-    image_red: np.ndarray = segmentate_by_rbg(image, 235, 46, 40, 1)
+    image: np.ndarray = cv.imread("Juguetes de Colores.jpg")
+    image_red: np.ndarray = segmentate_by_rbg(image, 235, 46, 40, 0.25)
 
     rows, cols = 1, 2
 
@@ -47,7 +47,7 @@ def main() -> None:
 
     plt.subplot(rows, cols, 2)
     plt.imshow(cv.cvtColor(image_red, cv.COLOR_BGRA2RGBA))
-    plt.title("Original")
+    plt.title("Red segmented")
     plt.axis("off")
 
     plt.show()
