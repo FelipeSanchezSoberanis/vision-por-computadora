@@ -15,9 +15,9 @@ def equalize_histogram_channels_3(image: np.ndarray) -> np.ndarray:
 
 def main() -> None:
     image_farolas: np.ndarray = cv.imread("Farolas-LED.jpg")
-    image_farolas_hsv: np.ndarray = cv.cvtColor(image_farolas, cv.COLOR_BGR2HSV)
+    image_farolas_hls: np.ndarray = cv.cvtColor(image_farolas, cv.COLOR_BGR2HLS)
     image_farolas_eq: np.ndarray = equalize_histogram_channels_3(image_farolas)
-    image_farolas_hsv_eq: np.ndarray = equalize_histogram_channels_3(image_farolas_hsv)
+    image_farolas_hls_eq: np.ndarray = equalize_histogram_channels_3(image_farolas_hls)
 
     rows, cols = 1, 3
 
@@ -32,8 +32,8 @@ def main() -> None:
     plt.axis("off")
 
     plt.subplot(rows, cols, 3)
-    plt.imshow(cv.cvtColor(image_farolas_hsv_eq, cv.COLOR_HSV2RGB))
-    plt.title("HSV equalized")
+    plt.imshow(cv.cvtColor(image_farolas_hls_eq, cv.COLOR_HLS2RGB))
+    plt.title("HLS equalized")
     plt.axis("off")
 
     plt.show()
