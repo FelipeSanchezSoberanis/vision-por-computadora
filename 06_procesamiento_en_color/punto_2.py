@@ -1,15 +1,10 @@
 import numpy as np
 import cv2 as cv
 import matplotlib.pyplot as plt
+from punto_3 import normalize_hue
 
 
-#  UVAS: rgb(122, 57, 146)
-#  NARANJA: rgb(243, 163, 22)
-
-
-def segmentate_by_hsl(
-    image: np.ndarray, h: int, s: int, _: int, margin: float
-) -> np.ndarray:
+def segmentate_by_hue(image: np.ndarray, hue: int, margin: float) -> np.ndarray:
     height, width, _ = image.shape
 
     mask: np.ndarray = np.zeros((height, width), dtype="uint8")
@@ -20,17 +15,12 @@ def segmentate_by_hsl(
 
     for h in range(height):
         for w in range(width):
-            if (
-                min_margin * h
-                < channel_h[h][w]
-                < max_margin * h
-                #  and min_margin * s < channel_s[h][w] < max_margin * s
-            ):
+            if min_margin * hue < channel_h[h][w] < max_margin * hue:
                 mask[h][w] = 1
 
-    channel_h *= mask
-    channel_l *= mask
-    channel_s *= mask
+    channel_h = cv.bitwise_and(channel_h, channel_h, mask=mask)
+    channel_l = cv.bitwise_and(channel_l, channel_l, mask=mask)
+    channel_s = cv.bitwise_and(channel_s, channel_s, mask=mask)
 
     return cv.merge((channel_h, channel_l, channel_s))
 
@@ -73,11 +63,11 @@ def main() -> None:
     image_objects_orange: np.ndarray = segmentate_by_rbg(
         image_objects, 243, 163, 22, 0.25
     )
-    image_toys_hsl_grapes: np.ndarray = segmentate_by_hsl(
-        image_toys_hsl, 143, 100, 120, 0.875
+    image_toys_hsl_grapes: np.ndarray = segmentate_by_hue(
+        image_toys_hsl, normalize_hue(284), 0.1
     )
-    image_objects_hsl_orange: np.ndarray = segmentate_by_hsl(
-        image_objects_hsl, 19, 90, 52, 0.75
+    image_objects_hsl_orange: np.ndarray = segmentate_by_hue(
+        image_objects_hsl, normalize_hue(38), 0.1
     )
 
     rows, cols = 2, 4
