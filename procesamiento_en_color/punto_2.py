@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 
 def segmentate_by_hsl(
-    image: np.ndarray, h: int, s: int, l: int, margin: float
+    image: np.ndarray, h: int, s: int, _: int, margin: float
 ) -> np.ndarray:
     height, width, _ = image.shape
 
@@ -21,13 +21,16 @@ def segmentate_by_hsl(
     for h in range(height):
         for w in range(width):
             if (
-                min_margin * h < channel_h[h][w] < max_margin * h
-                and min_margin * s < channel_s[h][w] < max_margin * s
+                min_margin * h
+                < channel_h[h][w]
+                < max_margin * h
+                #  and min_margin * s < channel_s[h][w] < max_margin * s
             ):
                 mask[h][w] = 1
 
     channel_h *= mask
     channel_l *= mask
+    channel_s *= mask
 
     return cv.merge((channel_h, channel_l, channel_s))
 
@@ -71,10 +74,10 @@ def main() -> None:
         image_objects, 243, 163, 22, 0.25
     )
     image_toys_hsl_grapes: np.ndarray = segmentate_by_hsl(
-        image_toys_hsl, 284, 44, 40, 0.5
+        image_toys_hsl, 143, 100, 120, 0.875
     )
     image_objects_hsl_orange: np.ndarray = segmentate_by_hsl(
-        image_objects_hsl, 38, 90, 52, 0.25
+        image_objects_hsl, 19, 90, 52, 0.75
     )
 
     rows, cols = 2, 4
@@ -100,7 +103,7 @@ def main() -> None:
     plt.axis("off")
 
     plt.subplot(rows, cols, 5)
-    plt.imshow(cv.cvtColor(image_toys, cv.COLOR_BGR2RGB))
+    plt.imshow(image_toys_hsl)
     plt.title("Original toys")
     plt.axis("off")
 
@@ -110,7 +113,7 @@ def main() -> None:
     plt.axis("off")
 
     plt.subplot(rows, cols, 7)
-    plt.imshow(cv.cvtColor(image_objects, cv.COLOR_BGR2RGB))
+    plt.imshow(image_objects_hsl)
     plt.title("Original objects")
     plt.axis("off")
 
