@@ -56,19 +56,16 @@ def apply_filter_2(
                         w_current -= width
 
                     pixels_2.append(channel_2[h_current][w_current])
-                    if channel == "BGR":
-                        pixels_1.append(channel_1[h_current][w_current])
-                        pixels_3.append(channel_3[h_current][w_current])
+                    pixels_1.append(channel_1[h_current][w_current])
+                    pixels_3.append(channel_3[h_current][w_current])
 
             channel_2[h][w] = function(pixels_2)
-            if channel == "BGR":
-                channel_1[h][w] = function(pixels_1)
-                channel_3[h][w] = function(pixels_3)
+            channel_1[h][w] = function(pixels_1)
+            channel_3[h][w] = function(pixels_3)
 
             pixels_2 = []
-            if channel == "BGR":
-                pixels_1 = []
-                pixels_3 = []
+            pixels_1 = []
+            pixels_3 = []
 
             counter += 1
             progress_bar.update(counter)
