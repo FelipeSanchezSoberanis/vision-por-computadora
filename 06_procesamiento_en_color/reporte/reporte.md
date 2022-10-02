@@ -16,7 +16,21 @@ lang: es
 ![Resultados del punto 1.](reporte/punto_1_resultados_1.png)
 
 ## Bibliografía
+
+- [https://en.wikipedia.org/wiki/HSLuv](https://en.wikipedia.org/wiki/HSLuv)
+- [https://en.wikipedia.org/wiki/SRGB](https://en.wikipedia.org/wiki/SRGB)
+
 ## Librerías
+
+```python
+import numpy as np
+import progressbar
+import matplotlib.pyplot as plt
+import cv2 as cv
+from typing import Callable as callable
+import math
+```
+
 ## Algoritmos propios
 
 N/A.
