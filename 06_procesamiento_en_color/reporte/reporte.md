@@ -75,7 +75,17 @@ N/A.
 ![Resultados del punto 3.](reporte/punto_3_resultados_1.png)
 
 ## Bibliografía
+
+- [https://realpython.com/python-opencv-color-spaces/#simple-segmentation-using-color-spaces](https://realpython.com/python-opencv-color-spaces/#simple-segmentation-using-color-spaces)
+
 ## Librerías
+
+```python
+import numpy as np
+import cv2 as cv
+import matplotlib.pyplot as plt
+```
+
 ## Algoritmos propios
 
 N/A.
