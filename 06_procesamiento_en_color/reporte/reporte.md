@@ -47,7 +47,19 @@ N/A.
 ![Resultados del punto 2.](reporte/punto_2_resultados_1.png)
 
 ## Bibliografía
+
+- [https://mattmaulion.medium.com/color-image-segmentation-image-processing-4a04eca25c0](https://mattmaulion.medium.com/color-image-segmentation-image-processing-4a04eca25c0)
+
 ## Librerías
+
+```python
+import numpy as np
+import cv2 as cv
+import matplotlib.pyplot as plt
+from punto_3 import normalize_hue
+```
+
+
 ## Algoritmos propios
 
 N/A.
