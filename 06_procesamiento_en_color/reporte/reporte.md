@@ -102,7 +102,17 @@ N/A.
 ![Resultados del punto 4.](reporte/punto_4_resultados_1.png)
 
 ## Bibliografía
+
+- [https://www.sciencedirect.com/topics/computer-science/histogram-equalization](https://www.sciencedirect.com/topics/computer-science/histogram-equalization)
+
 ## Librerías
+
+```python
+import matplotlib.pyplot as plt
+import cv2 as cv
+import numpy as np
+```
+
 ## Algoritmos propios
 
 N/A.
