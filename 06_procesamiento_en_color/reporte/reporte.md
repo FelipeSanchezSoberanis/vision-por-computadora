@@ -59,7 +59,6 @@ import matplotlib.pyplot as plt
 from punto_3 import normalize_hue
 ```
 
-
 ## Algoritmos propios
 
 N/A.
