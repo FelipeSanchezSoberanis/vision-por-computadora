@@ -1,11 +1,11 @@
 import cv2 as cv
-import numpy as np
 import matplotlib.pyplot as plt
 
 
 def main() -> None:
     image: cv.Mat = cv.imread("coins.png", 0)
     image_blur: cv.Mat = cv.medianBlur(image, 101)
+
     circles = cv.HoughCircles(
         image=image_blur,
         method=cv.HOUGH_GRADIENT,
@@ -29,6 +29,7 @@ def main() -> None:
         )
 
     plt.imshow(cv.cvtColor(image, cv.COLOR_BGR2RGB))
+    plt.axis("off")
     plt.show()
 
 
