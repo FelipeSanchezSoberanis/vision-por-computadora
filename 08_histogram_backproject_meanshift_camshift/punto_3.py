@@ -3,8 +3,8 @@ import argparse
 import numpy as np
 
 
-VIDEO: str = "wooden_star_video.mp4"
-REFERENCE_IMAGE: str = "wooden_star_extracted.png"
+VIDEO: str = "vado.mp4"
+REFERENCE_IMAGE: str = "selfie.jpg"
 
 
 def main() -> None:
@@ -48,7 +48,7 @@ def main() -> None:
         frame = cv.rotate(frame, 1)
 
         if not track_window:
-            track_window = (770, 1730, 600, 600)
+            track_window = (900, 1300, 700, 800)
 
         frame_hsv: cv.Mat = cv.cvtColor(frame, cv.COLOR_BGR2HSV)
         frame_dst: cv.Mat = cv.calcBackProject(
