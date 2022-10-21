@@ -8,6 +8,7 @@ opencv-contrib-python = "*"
 matplotlib = "*"
 progressbar2 = "*"
 scipy = "*"
+pytesseract = "*"
 
 [dev-packages]
 
