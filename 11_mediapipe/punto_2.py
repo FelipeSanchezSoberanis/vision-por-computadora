@@ -1,6 +1,7 @@
 import cv2 as cv
 import mediapipe as mp
 from punto_1 import LandMarkCoordinates
+import numpy as np
 
 
 class BodyLandMarkCoordinates(LandMarkCoordinates):
@@ -44,6 +45,21 @@ class Body:
         self.right_foot_index: BodyLandMarkCoordinates = landmarks[32]
 
 
+def angle_point(point: BodyLandMarkCoordinates) -> float:
+    return np.rad2deg(np.arctan(point.y / point.x))
+
+
+def angle_between_points(
+    point_1: BodyLandMarkCoordinates,
+    point_2: BodyLandMarkCoordinates,
+    point_ref: BodyLandMarkCoordinates,
+) -> float:
+    angle_1 = np.arctan((point_1.y - point_ref.y) / (point_1.x - point_ref.x))
+    angle_2 = np.arctan((point_2.y - point_ref.y) / (point_1.y - point_ref.x))
+
+    return np.rad2deg(angle_1 - angle_2)
+
+
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_pose = mp.solutions.pose
@@ -71,6 +87,8 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
         )
 
         body = Body(results.pose_landmarks.landmark)
+
+        print(angle_point(body.left_shoulder))
 
         cv.imshow("MediaPipe Pose", cv.flip(image, 1))
 
