@@ -3,7 +3,7 @@ import mediapipe as mp
 import numpy as np
 
 
-class HandPartCoordinates:
+class LandMarkCoordinates:
     def __init__(self):
         pass
 
@@ -21,12 +21,12 @@ class Hand:
         self.finger_pinky = [landmarks[17], landmarks[18], landmarks[19], landmarks[20]]
         self.hand_base = landmarks[0]
 
-    finger_thumb: list[HandPartCoordinates]
-    finger_pointer: list[HandPartCoordinates]
-    finger_middle: list[HandPartCoordinates]
-    finger_ring: list[HandPartCoordinates]
-    finger_pinky: list[HandPartCoordinates]
-    hand_base: HandPartCoordinates
+    finger_thumb: list[LandMarkCoordinates]
+    finger_pointer: list[LandMarkCoordinates]
+    finger_middle: list[LandMarkCoordinates]
+    finger_ring: list[LandMarkCoordinates]
+    finger_pinky: list[LandMarkCoordinates]
+    hand_base: LandMarkCoordinates
 
 
 def distance_between_points(point_1, point_2):
