@@ -66,6 +66,10 @@ mp_pose = mp.solutions.pose
 
 cv.namedWindow("MediaPipe Pose", cv.WINDOW_NORMAL)
 
+counter: int = 0
+situp_already_started: bool = False
+
+
 cap = cv.VideoCapture("Abbs.mp4")
 with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
     while cap.isOpened():
@@ -88,7 +92,14 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
 
         body = Body(results.pose_landmarks.landmark)
 
-        print(angle_point(body.left_shoulder))
+        if angle_point(body.left_shoulder) < 45:
+            if not situp_already_started:
+                counter += 1
+                situp_already_started = True
+        else:
+            situp_already_started = False
+
+        print(f"Situps: {counter}")
 
         cv.imshow("MediaPipe Pose", cv.flip(image, 1))
 
