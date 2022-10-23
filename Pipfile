@@ -9,6 +9,7 @@ matplotlib = "*"
 progressbar2 = "*"
 scipy = "*"
 pytesseract = "*"
+mediapipe = "*"
 
 [dev-packages]
 
