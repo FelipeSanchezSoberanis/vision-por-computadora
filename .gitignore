@@ -21,4 +21,22 @@ typings/
 11_mediapipe/reporte/resultado_punto_2.mp4
 11_mediapipe/reporte/resultado_punto_3.mp4
 11_mediapipe/reporte/resultado_punto_4.mp4
+14_clasificador_haar_cascade/ironman/
+14_clasificador_haar_cascade/landscapes/
+14_clasificador_haar_cascade/VID_20221030_234551.mp4
+14_clasificador_haar_cascade/VID_20221030_234551_min.mp4
+14_clasificador_haar_cascade/classifier/cascade.xml
+14_clasificador_haar_cascade/classifier/log.txt
+14_clasificador_haar_cascade/classifier/params.xml
+14_clasificador_haar_cascade/classifier/stage0.xml
+14_clasificador_haar_cascade/classifier/stage1.xml
+14_clasificador_haar_cascade/classifier/stage2.xml
+14_clasificador_haar_cascade/classifier/stage3.xml
+14_clasificador_haar_cascade/classifier/stage4.xml
+14_clasificador_haar_cascade/classifier/stage5.xml
+14_clasificador_haar_cascade/classifier/stage6.xml
+14_clasificador_haar_cascade/classifier/stage7.xml
+14_clasificador_haar_cascade/neg.lst
+14_clasificador_haar_cascade/pos.lst
+14_clasificador_haar_cascade/pos_samples.vec
 
