@@ -11,8 +11,7 @@ lang: es
 \newpage
 # Resultados
 
-<!-- TODO poner link al video -->
-[www.google.com.mx](www.google.com.mx)
+[https://alumnosuady-my.sharepoint.com/:v:/g/personal/a18214854_alumnos_uady_mx/EVmE5hFs7Z1LmXUvu7Z4Ih4BrUMXFCiEjLhfj5J8QsESAg?e=d6ExoO](https://alumnosuady-my.sharepoint.com/:v:/g/personal/a18214854_alumnos_uady_mx/EVmE5hFs7Z1LmXUvu7Z4Ih4BrUMXFCiEjLhfj5J8QsESAg?e=d6ExoO)
 
 Como se puede observar en el video, el entrenamiento que se realizó no otorgó un resultado satisfactorio al nivel esperado. El reconocimiento del objeto se logra apreciar hasta el final del video y ni siquiera en el lugar correcto.
 
