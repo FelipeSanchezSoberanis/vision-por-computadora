@@ -44,4 +44,5 @@ typings/
 15_reconocimiento_rostros/mask_model_LBPH.xml
 15_reconocimiento_rostros/mask_model_eigen.xml
 15_reconocimiento_rostros/mask_model_fisher.xml
+15_reconocimiento_rostros/reporte/resultados.mp4
 
