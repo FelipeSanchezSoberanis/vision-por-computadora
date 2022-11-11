@@ -40,4 +40,8 @@ typings/
 14_clasificador_haar_cascade/pos.lst
 14_clasificador_haar_cascade/pos_samples.vec
 14_clasificador_haar_cascade/reporte/resultados_punto_1.mp4
+15_reconocimiento_rostros/data
+15_reconocimiento_rostros/mask_model_LBPH.xml
+15_reconocimiento_rostros/mask_model_eigen.xml
+15_reconocimiento_rostros/mask_model_fisher.xml
 
